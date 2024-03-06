@@ -35,10 +35,10 @@ def login_view(request):
 
 @login_required
 def generate_random_code(request):
-    if 'generated_code' not in request.session:  # Проверяем, был ли уже сгенерирован код
+    if 'generated_code' not in request.session:
         random_code = random.randint(1000, 9999)
         request.session['generated_code'] = random_code
         return render(request, 'random_code.html', {'random_code': random_code})
     else:
-        del request.session['generated_code']  # Удаляем сгенерированный код при перезагрузке страницы
+        del request.session['generated_code']
         return redirect('login')
